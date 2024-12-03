@@ -8,15 +8,87 @@ body {
 }
 .main-row{
     display: flex;
+    height: 100vh;
 }
 /* Right Column */
 .main-column-right {
-    background-color: #242930;
-    padding: 10px;
+    flex: 1;
+    background-color: #171a1e;
+    padding: 18px;
     display: flex;
     flex-direction: column;
-    flex: 1;
-    overflow-y: auto;
+    gap: 7px;
+}
+
+.top-display-row{
+    display: flex;
+    flex: 2;
+    background-color: #171a1e;
+    flex-direction: row;
+    gap: 7px;
+}
+
+    .character-container{
+        display: flex;
+        background-color: #171a1e;
+        width: 600px;
+        flex-direction: column;
+        gap: 7px;
+    }
+
+        .character-main{
+            display: flex;
+            background-color: #222831;
+            flex: 1;
+            border-radius: 12px;
+            flex-direction: column;
+        }
+            .character-header{
+                display: flex;
+                flex: 1;
+                flex-direction: row-reverse;
+                gap: 4px;
+                padding-left: 14px;
+                padding-top: 7px;
+                padding-right: 14px;
+            }
+                .button-header{
+                    border: 2px solid #2d3f57;
+                    background-color: rgb(34, 40, 49);
+                    width: 80px;
+                    height: 40px;
+                    border-radius: 5px;
+                }
+                .button-name{
+                    border: 2px solid #2d3f57;
+                    background-color: rgb(34, 40, 49);
+                    flex: 1;
+                    height: 40px;
+                    border-radius: 5px;
+                }
+
+            .character-primary{
+                display: flex;
+                flex: 1;
+            }
+
+        .character-secondary{
+            display: flex;
+            background-color: #222831;
+            flex: 1;
+            border-radius: 12px;
+        }
+
+    .condition-box{
+        display: flex;
+        background-color: #3a5173;
+        flex: 4;
+    }
+
+.bottom-display-row{
+    display: flex;
+    flex: 5;
+    background: #351a1a;
 }
 
 /* Left Column */
@@ -47,7 +119,7 @@ body {
     padding: 10px;
     background-color: #222831;
     border: 2px solid #2d3f58;
-    border-radius: 8px;
+    border-radius: 5px;
     color: white;
     transition: border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
     cursor: pointer;
