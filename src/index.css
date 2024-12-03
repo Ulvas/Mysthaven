@@ -14,7 +14,7 @@ body {
 .main-column-right {
     flex: 1;
     background-color: #171a1e;
-    padding: 18px;
+    padding: 7px;
     display: flex;
     flex-direction: column;
     gap: 7px;
@@ -107,7 +107,7 @@ body {
 
 .bottom-display-row{
     display: flex;
-    flex: 5;
+    flex: 7;
     background: #351a1a;
 }
 
@@ -115,7 +115,7 @@ body {
 .main-column-left {
     width: 300px;
     background-color: #171a1e;
-    padding: 18px;
+    padding: 7px;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -205,7 +205,7 @@ button:hover {
 .modal-body {
     display: flex;
     flex-direction: row;
-    padding: 20px;
+    padding: 0 12px 0 12px;
     color: #fff;
     flex: 9;
 }
@@ -248,18 +248,18 @@ button:hover {
     flex-direction: row;
     justify-content: flex-start;
     padding: 10px;
-    flex: 1;
     background: rgb(23, 26, 30);
 }
 
 .modal-footer button {
-    padding: 10px 20px;
-    background-color: #222831;
+    padding: 2px 20px;
+    background-color: #171a1e;
     color: white;
     border: 1px solid #444;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
+    margin-right: 5px;
 }
 
 .modal-footer button:hover {
@@ -267,11 +267,25 @@ button:hover {
 }
 
 .modal-input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #444;
-    border-radius: 5px;
-    background: #171a1e;
+    width: 360px;
+    background: #2a323d;
     color: #fff;
-    font-size: 16px;
+    font-size: 12px;
+    padding: 6px;
+    outline: none;
+    border: none;
+    margin-bottom: 10px;
 }
+
+.modal-2{
+    background: #171a1e;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+}
+
+.modal-2-header{
+    margin-left: 14px;
+    font-size: 14px;
+}
+

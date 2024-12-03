@@ -4,24 +4,35 @@ import React, { useState } from 'react';
 
 function MainColumnRight() {
     const [characterName, setCharacterName] = useState("Nameless One");
-    const [isModalOpen, setIsModalOpen] = useState(false); // Modal state
+    const [characterXP, setCharacterXP] = useState(0); // New state for XP
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isXPModalOpen, setIsXPModalOpen] = useState(false); // New state for XP modal
 
-    // Handle opening and closing the modal
-    const openModal = () => setIsModalOpen(true);
-    const closeModal = () => setIsModalOpen(false);
+    // Modal handlers
+    const openNameModal = () => setIsModalOpen(true);
+    const closeNameModal = () => setIsModalOpen(false);
 
-    // Handle overlay click to close the modal
-    const handleOverlayClick = (event) => {
+    const openXPModal = () => setIsXPModalOpen(true);
+    const closeXPModal = () => setIsXPModalOpen(false);
+
+    const handleOverlayClick = (event, closeModal) => {
         if (event.target.classList.contains("modal-overlay")) {
             closeModal();
         }
     };
 
-    // Handle accepting the name
-    const handleAccept = () => {
+    // Name Modal Accept Handler
+    const handleAcceptName = () => {
         const inputName = document.getElementById("characterNameInput").value;
-        setCharacterName(inputName || "Nameless One"); // Default to "Nameless One" if input is empty
-        closeModal();
+        setCharacterName(inputName || "Nameless One");
+        closeNameModal();
+    };
+
+    // XP Modal Accept Handler
+    const handleAcceptXP = () => {
+        const inputXP = parseInt(document.getElementById("characterXPInput").value, 10);
+        setCharacterXP(isNaN(inputXP) ? 0 : inputXP); // Default to 0 if input is invalid
+        closeXPModal();
     };
 
     return (
@@ -30,19 +41,19 @@ function MainColumnRight() {
                 <div className="character-container">
                     <div className="character-main">
                         <div className="character-header">
+                            <button className="button-header" onClick={openXPModal}>
+                                <div className="option-text">
+                                    <div className="option-title">XP</div>
+                                    <div className="option-variable">{characterXP}</div>
+                                </div>
+                            </button>
                             <button className="button-header">
                                 <div className="option-text">
                                     <div className="option-title">Grade</div>
                                     <div className="option-variable">1</div>
                                 </div>
                             </button>
-                            <button className="button-header">
-                                <div className="option-text">
-                                    <div className="option-title">XP</div>
-                                    <div className="option-variable">0</div>
-                                </div>
-                            </button>
-                            <button className="button-name" onClick={openModal}>
+                            <button className="button-name" onClick={openNameModal}>
                                 <div className="option-text">
                                     <div className="option-title">Character Name</div>
                                     <div className="option-variable">{characterName}</div>
@@ -87,11 +98,11 @@ function MainColumnRight() {
                 <div className="spells-container"></div>
             </div>
 
-            {/* Modal */}
+            {/* Name Modal */}
             {isModalOpen && (
-                <div className="modal-overlay" onClick={handleOverlayClick}>
-                    <div className="modal">
-                        <div className="modal-header">
+                <div className="modal-overlay" onClick={(e) => handleOverlayClick(e, closeNameModal)}>
+                    <div className="modal-2">
+                        <div className="modal-2-header">
                             <h2>Edit Character Name</h2>
                         </div>
                         <div className="modal-body">
@@ -104,12 +115,32 @@ function MainColumnRight() {
                             />
                         </div>
                         <div className="modal-footer">
-                            <button onClick={handleAccept} className="button">
-                                Accept
-                            </button>
-                            <button onClick={closeModal} className="button">
-                                Cancel
-                            </button>
+                            <button onClick={handleAcceptName}>Accept</button>
+                            <button onClick={closeNameModal}>Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {/* XP Modal */}
+            {isXPModalOpen && (
+                <div className="modal-overlay" onClick={(e) => handleOverlayClick(e, closeXPModal)}>
+                    <div className="modal-2">
+                        <div className="modal-2-header">
+                            <h2>Edit Character XP</h2>
+                        </div>
+                        <div className="modal-body">
+                            <input
+                                id="characterXPInput"
+                                type="number"
+                                placeholder="Enter XP value"
+                                defaultValue={characterXP}
+                                className="modal-input"
+                            />
+                        </div>
+                        <div className="modal-footer">
+                            <button onClick={handleAcceptXP}>Accept</button>
+                            <button onClick={closeXPModal}>Cancel</button>
                         </div>
                     </div>
                 </div>
