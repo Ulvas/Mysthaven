@@ -5,8 +5,11 @@ import React, { useState } from 'react';
 function MainColumnRight() {
     const [characterName, setCharacterName] = useState("Nameless One");
     const [characterXP, setCharacterXP] = useState(0); // New state for XP
+    const [grade, setGrade] = useState(1); // State for selected grade
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isXPModalOpen, setIsXPModalOpen] = useState(false); // New state for XP modal
+    const [isGradeModalOpen, setIsGradeModalOpen] = useState(false); // Modal state for grade selection
+    const [selectedGrade, setSelectedGrade] = useState(grade); // Temp grade selection
 
     // Modal handlers
     const openNameModal = () => setIsModalOpen(true);
@@ -14,6 +17,9 @@ function MainColumnRight() {
 
     const openXPModal = () => setIsXPModalOpen(true);
     const closeXPModal = () => setIsXPModalOpen(false);
+
+    const openGradeModal = () => setIsGradeModalOpen(true);
+    const closeGradeModal = () => setIsGradeModalOpen(false);
 
     const handleOverlayClick = (event, closeModal) => {
         if (event.target.classList.contains("modal-overlay")) {
@@ -35,6 +41,12 @@ function MainColumnRight() {
         closeXPModal();
     };
 
+    // Handle accepting the grade
+    const handleAcceptGrade = () => {
+        setGrade(selectedGrade); // Set the selected grade as the new grade
+        closeGradeModal();
+    }
+
     return (
         <div className="main-column-right">
             <div className="top-display-row">
@@ -47,10 +59,10 @@ function MainColumnRight() {
                                     <div className="option-variable">{characterXP}</div>
                                 </div>
                             </button>
-                            <button className="button-header">
+                            <button className="button-header" onClick={openGradeModal}>
                                 <div className="option-text">
                                     <div className="option-title">Grade</div>
-                                    <div className="option-variable">1</div>
+                                    <div className="option-variable">{grade}</div>
                                 </div>
                             </button>
                             <button className="button-name" onClick={openNameModal}>
@@ -141,6 +153,33 @@ function MainColumnRight() {
                         <div className="modal-footer">
                             <button onClick={handleAcceptXP}>Accept</button>
                             <button onClick={closeXPModal}>Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            )}
+            {/* Grade Selection Modal */}
+            {isGradeModalOpen && (
+                <div className="modal-overlay" onClick={(e) => handleOverlayClick(e, closeGradeModal)}>
+                    <div className="modal-2">
+                        <div className="modal-2-header">
+                            <h2>Select Grade</h2>
+                        </div>
+                        <div className="modal-body">
+                            <div className="grade-options">
+                                {[1, 2, 3, 4, 5, 6, 7].map((g) => (
+                                    <div
+                                        key={g}
+                                        className={`grade-option ${selectedGrade === g ? "selected" : ""}`}
+                                        onClick={() => setSelectedGrade(g)}
+                                    >
+                                        Grade {g}
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                        <div className="modal-footer">
+                            <button onClick={handleAcceptGrade}>Accept</button>
+                            <button onClick={closeGradeModal}>Cancel</button>
                         </div>
                     </div>
                 </div>

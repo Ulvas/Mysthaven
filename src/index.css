@@ -289,3 +289,27 @@ button:hover {
     font-size: 14px;
 }
 
+.grade-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 10px;
+}
+
+.grade-option {
+    padding: 10px 20px;
+    background: #2a323d;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    border: 1px solid #2d3f57;
+}
+
+.grade-option:hover {
+    border-color: #fd5622;
+}
+
+.grade-option.selected {
+    background-color: #fd5622;
+    font-weight: bold;
+}
