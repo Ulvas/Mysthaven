@@ -58,6 +58,7 @@ body {
                     width: 80px;
                     height: 40px;
                     border-radius: 5px;
+                    cursor: pointer;
                 }
                 .button-name{
                     border: 2px solid #2d3f57;
@@ -65,6 +66,7 @@ body {
                     flex: 1;
                     height: 40px;
                     border-radius: 5px;
+                    cursor: pointer;
                 }
 
             .character-primary{
@@ -73,18 +75,33 @@ body {
                 flex-direction: row;
                 gap: 8px;
             }
-                .primary-icon{
-                    margin-left: 14px;
+                .icon-container{
                     width: 40px;
                     height: 40px;
-                    filter: invert(38%) sepia(79%) saturate(2013%) hue-rotate(346deg) brightness(105%) contrast(103%);
+                    margin-left: 14px;
                 }
+
+                    .shoe-icon{
+                        width: 100%;
+                        height: 100%;
+                        object-fit: contain;
+                        filter: invert(38%) sepia(79%) saturate(2013%) hue-rotate(346deg) brightness(105%) contrast(103%);
+                    }
+                    .wand-icon{
+                        width: 80%;
+                        height: 80%;
+                        object-fit: contain;
+                        filter: invert(38%) sepia(79%) saturate(2013%) hue-rotate(346deg) brightness(105%) contrast(103%);
+                        padding-top: 4px;
+                    }
                 .stat-text{
                     display: flex;
                     flex-direction: column;
                     flex: 1;
                     align-items: center;
                     margin-right: 14px;
+                    font-size: 14px;
+                    padding-top: 4px;
                 }
                     .stat-name{
 
@@ -184,6 +201,7 @@ button:hover {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    z-index: 999;
 }
 
 .modal{
@@ -312,4 +330,77 @@ button:hover {
 .grade-option.selected {
     background-color: #fd5622;
     font-weight: bold;
+}
+
+.health-container {
+    display: flex;
+    flex-direction: column;
+    padding: 7px 0 0 14px;
+}
+
+.heart-wrapper {
+    position: relative;
+    width: 80px;
+    height: 80px;
+}
+
+.heart-border {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 2; /* On top of the fill */
+}
+
+.heart-fill {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1; /* Behind the border */
+    transition: clip-path 0.5s ease; /* Smooth fill animation */
+}
+
+.heart-value {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    z-index: 3; /* On top of everything */
+}
+
+.heart-controls {
+    position: relative;
+    left: -14px;
+    top: -11px;
+    display: flex;
+    flex-direction: row;
+    gap: 2px;
+    padding: 7px 0 0 14px;
+}
+
+.adjust-btn {
+    width: 40px;
+    height: 20px;
+    color: #ffffff; /* Primary color for text */
+    font-size: 24px; /* Larger font size for better visibility */
+    font-weight: bold;
+    border-radius: 50%; /* Rounded shape */
+    cursor: pointer;
+    transition: color 0.3s, transform 0.2s; /* Smooth transitions */
+    background: none; /* No background */
+    border: none; /* No border */
+}
+
+.adjust-btn:hover {
+    color: #fd5622; /* Change color on hover */
+    transform: scale(1.1); /* Slightly enlarge on hover */
+}
+
+.adjust-btn:active {
+    color: #2d3f57; /* Change color when active */
+    transform: scale(0.95); /* Shrink effect when pressed */
 }

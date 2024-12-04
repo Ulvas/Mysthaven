@@ -1,6 +1,10 @@
 import wandImg from './assets/magic-wand.png';
 import speedIMG from './assets/running-shoe.png';
+import heartImg from './assets/heart-border.png';
+import healthImg from './assets/health-fill.png';
+import resolveImg from './assets/resolve-fill.png';
 import React, { useState } from 'react';
+
 
 function MainColumnRight() {
     const [characterName, setCharacterName] = useState("Nameless One");
@@ -10,6 +14,22 @@ function MainColumnRight() {
     const [isXPModalOpen, setIsXPModalOpen] = useState(false); // New state for XP modal
     const [isGradeModalOpen, setIsGradeModalOpen] = useState(false); // Modal state for grade selection
     const [selectedGrade, setSelectedGrade] = useState(grade); // Temp grade selection
+
+    const [maxHP] = useState(12);
+    const [maxRP] = useState(9);
+    const [currentHP, setCurrentHP] = useState(3);
+    const [currentRP, setCurrentRP] = useState(2);
+
+    const adjustHealth = (healthType, operation) => {
+        if (healthType === "hp") {
+            if (operation === "increase" && currentHP < maxHP) setCurrentHP(currentHP + 1);
+            if (operation === "decrease" && currentHP > 0) setCurrentHP(currentHP - 1);
+        } else if (healthType === "rp") {
+            if (operation === "increase" && currentRP < maxRP) setCurrentRP(currentRP + 1);
+            if (operation === "decrease" && currentRP > 0) setCurrentRP(currentRP - 1);
+        }
+    };
+
 
     // Modal handlers
     const openNameModal = () => setIsModalOpen(true);
@@ -73,12 +93,16 @@ function MainColumnRight() {
                             </button>
                         </div>
                         <div className="character-primary">
-                            <img className="primary-icon" src={speedIMG} alt="Speed" />
+                            <div className="icon-container">
+                                <img className="shoe-icon" src={speedIMG} alt="Speed"/>
+                            </div>
                             <div className="option-text">
                                 <div className="option-variable">SPEED</div>
                                 <div className="option-variable">25 ft.</div>
                             </div>
-                            <img className="primary-icon" src={wandImg} alt="Primary Icon" />
+                            <div className="icon-container">
+                                <img className="wand-icon" src={wandImg} alt="Primary Icon"/>
+                            </div>
                             <div className="stat-text">
                                 <div className="stat-name">MAGIC</div>
                                 <div className="stat-value">+1</div>
@@ -101,7 +125,69 @@ function MainColumnRight() {
                             </div>
                         </div>
                     </div>
-                    <div className="character-secondary"></div>
+                    <div className="character-secondary">
+                        {/* Health Hearts */}
+                        <div className="health-container">
+                            <div className="heart-wrapper">
+                                {/* Health Fill */}
+                                <img
+                                    className="heart-fill"
+                                    src={healthImg}
+                                    alt="Health Fill"
+                                    style={{
+                                        clipPath: `inset(${100 - (currentHP / maxHP) * 100}% 0 0 0)`,
+                                    }}
+                                />
+                                {/* Health Border */}
+                                <img className="heart-border" src={heartImg} alt="Heart Border"/>
+                                {/* Health Value */}
+                                <div className="heart-value">
+                                    {currentHP}/{maxHP}
+                                </div>
+                            </div>
+
+                            {/* Health Adjustment Buttons */}
+                            <div className="heart-controls">
+                                <button className="adjust-btn" onClick={() => adjustHealth("hp", "decrease")}>
+                                    -
+                                </button>
+                                <button className="adjust-btn" onClick={() => adjustHealth("hp", "increase")}>
+                                    +
+                                </button>
+                            </div>
+                        </div>
+
+                        {/* Resolve Hearts */}
+                        <div className="health-container">
+                            <div className="heart-wrapper">
+                                {/* Resolve Fill */}
+                                <img
+                                    className="heart-fill"
+                                    src={resolveImg}
+                                    alt="Resolve Fill"
+                                    style={{
+                                        clipPath: `inset(${100 - (currentRP / maxRP) * 100}% 0 0 0)`,
+                                    }}
+                                />
+                                {/* Resolve Border */}
+                                <img className="heart-border" src={heartImg} alt="Heart Border"/>
+                                {/* Resolve Value */}
+                                <div className="heart-value">
+                                    {currentRP}/{maxRP}
+                                </div>
+                            </div>
+
+                            {/* Resolve Adjustment Buttons */}
+                            <div className="heart-controls">
+                                <button className="adjust-btn" onClick={() => adjustHealth("rp", "decrease")}>
+                                    -
+                                </button>
+                                <button className="adjust-btn" onClick={() => adjustHealth("rp", "increase")}>
+                                    +
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div className="condition-box"></div>
             </div>
