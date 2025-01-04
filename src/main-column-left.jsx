@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import bloodlineIcon from './assets/heart-drop.png';
 import backgroundIcon from './assets/scroll-quill.png';
+import houseIcon from './assets/house-banner.png';
 
 function MainColumnLeft() {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -50,9 +51,43 @@ function MainColumnLeft() {
                     <img className="option-icon" src={backgroundIcon} alt="Background Icon" />
                     <div className="option-text">
                         <div className="option-title">Background</div>
-                        <div className="option-variable"> Probably Rich</div>
+                        <div className="option-variable">Probably Rich</div>
                     </div>
                 </button>
+            </div>
+            {/*Grade 1 Container*/}
+            <div className="grade-container">
+                <label className="centered-grade-label">Grade 1</label>
+                <div className="options-box">
+                    <button className="button">
+                        <img className="option-icon" src={houseIcon} alt="Banner Icon"/>
+                        <div className="option-text">
+                            <div className="option-title">House</div>
+                            <div className="option-variable">Fuzzquip</div>
+                        </div>
+                    </button>
+                    <button className="button">
+                        <img className="option-icon" src={bloodlineIcon} alt="Bloodline Icon"/>
+                        <div className="option-text">
+                            <div className="option-title">Bloodline Feat</div>
+                            <div className="option-variable">Not Selected</div>
+                        </div>
+                    </button>
+                </div>
+            </div>
+
+            {/*Grade 2 Container*/}
+            <div className="grade-container">
+                <label className="centered-grade-label">Grade 2</label>
+                <div className="options-box">
+                    <button className="button">
+                        <img className="option-icon" src={houseIcon} alt="Banner Icon"/>
+                        <div className="option-text">
+                            <div className="option-title">House Feat</div>
+                            <div className="option-variable">Not Selected</div>
+                        </div>
+                    </button>
+                </div>
             </div>
             {isModalOpen && (
                 <div className="modal-overlay" onClick={handleOverlayClick}>
